@@ -2,6 +2,9 @@ import React, { useMemo } from 'react';
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { getHeroById } from './../../selectors/getHeroById';
 
+// import batman from '../../../public/assets/dc-batman.jpg' forma estatica
+const heroImages = require.context('../../../public/assets');
+
 export const HeroScreen = () => {
     const {heroeId} = useParams();
 
@@ -26,7 +29,10 @@ export const HeroScreen = () => {
         const returnPath = publisher === 'Marvel Comics' ? '/marvel' : '/dc';
         navigate(-1)
     }
-    const imagePath = `/assets/${id}.jpg`;
+    // const imagePath = `/assets/${id}.jpg`; desde public
+    // const imagePath = batman; desde import
+    const imagePath = heroImages(`./${id}.jpg`).default;
+    
 
     return (
             <div className="row mt-5">

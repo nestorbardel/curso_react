@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+const heroImages = require.context('../../../public/assets');
+
 export const HeroCard = (
    { id,
     superhero,
@@ -10,7 +12,8 @@ export const HeroCard = (
     characters}
 ) => {
 
-    const imagePath = `/assets/${id}.jpg`;
+    // const imagePath = `/assets/${id}.jpg`;
+    const imagePath = heroImages(`./${id}.jpg`).default;
 
     return (
         <div className="col animate__animated animate__fadeIn">
